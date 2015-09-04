@@ -1,0 +1,32 @@
+{
+  "name": "glint-adapter-ajax",
+  "version": "1.0.0",
+  "description": "Ajax Adapter for Glint",
+  "main": "server.js",
+  "browser": "browser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andi Neck",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "debug": "^2.0.0",
+    "express": "^4.0.0",
+    "superagent": "^0.21.0",
+    "utils-merge": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glintcms/glint-adapter-ajax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/glintcms/glint-adapter-ajax/issues"
+  },
+  "homepage": "https://github.com/glintcms/glint-adapter-ajax",
+  "keywords": [
+    "glint",
+    "adapter",
+    "ajax"
+  ]
+}
