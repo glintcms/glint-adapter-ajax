@@ -39,6 +39,8 @@ function AjaxAdapter(options) {
 
 AjaxAdapter.prototype.api = AjaxAdapter.api = 'adapter-provider';
 
+AjaxAdapter.prototype.name = AjaxAdapter.name = 'ajax';
+
 AjaxAdapter.prototype._initRoutes = function() {
   var router = this.router = express.Router();
 
