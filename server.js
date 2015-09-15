@@ -29,6 +29,7 @@ function AjaxAdapter(options) {
 
   this.adapter = this.server.adapter(this.server);
   this.adapter.routes = this._initRoutes();
+  this.adapter.provider = this.server.adapter.provider;
   this.adapter.ajax = this;
   return this.adapter;
 }
@@ -39,7 +40,7 @@ function AjaxAdapter(options) {
 
 AjaxAdapter.prototype.api = AjaxAdapter.api = 'adapter-provider';
 
-AjaxAdapter.prototype.name = AjaxAdapter.name = 'ajax';
+AjaxAdapter.prototype.provider = AjaxAdapter.provider = 'ajax';
 
 AjaxAdapter.prototype._initRoutes = function() {
   var router = this.router = express.Router();

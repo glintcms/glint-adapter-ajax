@@ -31,7 +31,7 @@ function AjaxAdapter(options) {
   this.browser = {};
   merge(this.browser, c);
   merge(this, options);
-  this.address = removeSlash(this.browser.address);
+  this.address = removeSlash(this.browser.address || location.origin);
   this.path = removeSlash(this.browser.path);
 }
 
@@ -40,6 +40,8 @@ function AjaxAdapter(options) {
  */
 
 AjaxAdapter.prototype.api = AjaxAdapter.api = 'adapter-provider';
+
+AjaxAdapter.prototype.provider = AjaxAdapter.provider = 'ajax';
 
 AjaxAdapter.prototype.find = function (db, type, query, fn) {
   var path = this.getPath(db, type, c.find);
