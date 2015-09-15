@@ -1,6 +1,6 @@
 {
   "name": "glint-adapter-ajax",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ajax Adapter for Glint",
   "main": "server.js",
   "browser": "browser.js",
