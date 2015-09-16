@@ -1,8 +1,8 @@
 /**
  * Module dependencies.
  */
+var debug = require('debug')('glint-adapter-ajax');
 var merge = require('utils-merge');
-var debug = require('debug')('glint:AjaxAdapter');
 var request = require('superagent');
 var c = require('./config');
 

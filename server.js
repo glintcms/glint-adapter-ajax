@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var bj = bodyParser.json({limit: '1gb'});
 var path = require('path');
 var merge = require('utils-merge');
-var debug = require('debug')('glint:AjaxAdapter');
+var debug = require('debug')('glint-adapter-ajax');
 var c = require('./config');
 var cs = require('./config-server');
 
