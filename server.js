@@ -23,8 +23,7 @@ var cs = require('./config-server');
  */
 function AjaxAdapter(options) {
   if (!(this instanceof AjaxAdapter)) return new AjaxAdapter(options);
-  this.browser = {};
-  merge(this.browser, c);
+  merge(this, c);
   this.server = {};
   merge(this.server, cs);
   merge(this, options);
@@ -57,10 +56,10 @@ AjaxAdapter.prototype._initRoutes = function() {
   var router = this.router = express.Router();
 
   var adapter = this.adapter;
-  var path = this.browser.path;
+  var path = this.path;
 
   // find
-  router.post(path + '/:db/:type/' + c.find, bj, function(req, res) {
+  router.post(path + '/:db/:type/' + this.find, bj, function(req, res) {
     var db = req.params.db;
     var type = req.params.type;
     var queryString = req.body;
