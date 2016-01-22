@@ -4,6 +4,8 @@
 var debug = require('debug')('glint-adapter-ajax');
 var merge = require('utils-merge');
 var request = require('superagent');
+var jsonify = require('json-fn');
+
 var c = require('./config');
 
 /**
@@ -44,12 +46,13 @@ AjaxAdapter.prototype.api = AjaxAdapter.api = 'adapter-provider';
 AjaxAdapter.prototype.provider = AjaxAdapter.provider = 'ajax';
 
 AjaxAdapter.prototype.find = function (db, type, query, fn) {
+  var queryString = jsonify.stringify(query);
   var path = this.getPath(db, type, c.find);
   debug('ajax load', path);
   request
     .post(path)
     //.withCredentials()
-    .send(query)
+    .send(queryString)
     .set('Accept', 'application/json')
     //.set('Cookie', document.cookie)
     .end(function (err, res) {
@@ -115,7 +118,7 @@ AjaxAdapter.prototype.getPath = function (db, type, id) {
   var path = [this.address, this.path, db, type, id];
   path = path.map(function (val) {
     return val.toLowerCase();
-  })
+  });
   path = path.join('/');
   return path;
 };

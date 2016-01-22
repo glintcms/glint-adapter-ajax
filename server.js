@@ -1,12 +1,14 @@
 /**
  * Module dependencies.
  */
+var debug = require('debug')('glint-adapter-ajax');
 var express = require('express');
 var bodyParser = require('body-parser');
 var bj = bodyParser.json({limit: '1gb'});
 var path = require('path');
 var merge = require('utils-merge');
-var debug = require('debug')('glint-adapter-ajax');
+var jsonify = require('json-fn');
+
 var c = require('./config');
 var cs = require('./config-server');
 
@@ -55,7 +57,8 @@ AjaxAdapter.prototype._initRoutes = function() {
   router.post(path + '/:db/:type/' + c.find, bj, function(req, res) {
     var db = req.params.db;
     var type = req.params.type;
-    var query = req.body;
+    var queryString = req.body;
+    var query = jsonify.parse(queryString);
 
     debug('AjaxAdapter find', db, type, query);
     adapter.find(db, type, query, function(err, data) {
@@ -105,7 +108,7 @@ AjaxAdapter.prototype._initRoutes = function() {
   });
 
   return router;
-}
+};
 
 /**
  * Helper functions.
@@ -117,7 +120,7 @@ AjaxAdapter.prototype.getPath = function(db, type, id) {
   var p = [this.address, this.path, db, type, id];
   p = p.map(function(val) {
     return val.toLowerCase();
-  })
+  });
   p = p.join('/');
   return p;
 };
