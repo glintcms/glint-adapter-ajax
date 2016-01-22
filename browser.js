@@ -10,8 +10,9 @@ var c = require('./config');
 
 /**
  * superagent `callback(err, fn)` signature consistency fix for browser
+ * @link https://github.com/visionmedia/superagent/issues/19
  */
-// https://github.com/visionmedia/superagent/issues/19
+
 var Request = request.Request;
 Request.prototype.endWithoutErr = Request.prototype.end;
 Request.prototype.end = function (fn) {
@@ -77,7 +78,9 @@ AjaxAdapter.prototype.load = function (db, type, id, fn) {
     });
 };
 
-// TODO Superagent max file size ???  Error: POST http://localhost:8080/ajax/articles/article/1 413 (Request Entity Too Large)
+/**
+ * @description: If you get something like this Error: POST http://... 413 (Request Entity Too Large) , make sure you have got the body-parser size set correctly.
+ */
 AjaxAdapter.prototype.save = function (db, type, id, content, fn) {
   var path = this.getPath(db, type, id);
   debug('ajax save', path);

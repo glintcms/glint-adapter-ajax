@@ -44,11 +44,17 @@ AjaxAdapter.prototype.api = AjaxAdapter.api = 'adapter-provider';
 
 AjaxAdapter.prototype.provider = AjaxAdapter.provider = 'ajax';
 
+/**
+ * @description: If you get something like this Error: POST http://... 413 (Request Entity Too Large) , make sure you have got the body-parser size set correctly.
+ *
+ * To Avoid 413 Errors with big json:  Error: POST http://localhost:8080/ajax/:db/:type/:id 413 (Request Entity Too Large),
+ * you can use the following line:
+ *
+ * router.use(bodyParser.json({limit: '1gb'}));
+ *
+ */
 AjaxAdapter.prototype._initRoutes = function() {
   var router = this.router = express.Router();
-
-  // Avoid 413 Errors with big json:  Error: POST http://localhost:8080/ajax/:db/:type/:id 413 (Request Entity Too Large)
-  //router.use(bodyParser.json({limit: '1gb'}));
 
   var adapter = this.adapter;
   var path = this.browser.path;
@@ -130,5 +136,9 @@ AjaxAdapter.prototype.getPath = function(db, type, id) {
  */
 exports = module.exports = AjaxAdapter;
 
-// usage with express:
-// use('*', AjaxAdapter().routes)
+
+/**
+ *  usage with express:
+ *  use('*', AjaxAdapter().routes)
+ */
+
